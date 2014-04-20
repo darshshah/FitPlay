@@ -1,0 +1,82 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fp.fit_play.FinishChallenge"
+    tools:ignore="MergeRootFrame" >
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical"
+     android:paddingRight="10dp"
+     android:paddingLeft="10dp" >
+
+     <TextView
+         android:id="@+id/textView1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:paddingBottom="10dp"
+         android:paddingTop="10dp"
+         android:singleLine="true"
+         android:text="10 Pushups in 5 mins"
+         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <TextView
+         android:id="@+id/textView2"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:paddingBottom="10dp"
+         android:paddingTop="10dp"
+         android:text="To do exercise. This place holds the description which was provided by the user when the challenge was created." />
+
+     <TextView
+         android:id="@+id/textView2"
+         android:layout_width="191dp"
+         android:layout_height="78dp"
+         android:layout_gravity="center"
+         android:gravity="center"
+         android:layout_marginBottom="30dp"
+         android:layout_marginTop="30dp"
+         android:background="@drawable/green"
+         android:padding="30dp"
+         android:text="Good Work !!" />
+
+     <TextView
+         android:id="@+id/textView3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Comments:"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <EditText
+         android:id="@+id/editText1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:padding="10dp"
+         android:maxLines="5"
+         android:hint="Any comments ?"
+         android:layout_marginTop="20dp"
+         android:ems="10" 
+         android:singleLine="false"
+         >
+
+         <requestFocus />
+     </EditText>
+
+     <Button
+         android:id="@+id/button1"
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="100dp"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:layout_marginTop="50dp"
+         android:gravity="center"
+         android:text="Done" />
+
+ </LinearLayout>
+
+</FrameLayout>

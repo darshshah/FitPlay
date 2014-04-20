@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fp.fit_play.IntroScreen"
+    tools:ignore="MergeRootFrame" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="98dp"
+            android:gravity="center"
+            android:padding="45px"
+            android:text="FitPlay"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="65px" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="85dp"
+            android:background="@drawable/blue"
+            android:gravity="center"
+            android:padding="25px"
+            android:text="Login with Facebook" />
+
+    </RelativeLayout>
+
+</FrameLayout>
+

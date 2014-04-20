@@ -1,0 +1,50 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fp.fit_play.SecondScreen"
+    tools:ignore="MergeRootFrame"  >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="98dp"
+            android:gravity="center"
+            android:padding="45px"
+            android:text="FitPlay"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="65px" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button2"
+            android:layout_alignRight="@+id/button2"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:padding="25px"
+            android:text="Fitness Tracking" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:padding="25px"
+            android:text="Groups and Challenges" />
+    
+    </RelativeLayout>
+    </FrameLayout>
