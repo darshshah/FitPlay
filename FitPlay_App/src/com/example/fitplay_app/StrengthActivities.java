@@ -1,40 +1,40 @@
 package com.example.fitplay_app;
 
-
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.os.Build;
 
-public class FitnessTracking extends ActionBarActivity {
-
+public class StrengthActivities extends ActionBarActivity {
 	private ListView listv;
 	private ArrayAdapter<String> adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fitness_tracking);
-		
-		
-		
+		setContentView(R.layout.activity_strength_activities);
+
 		// Setup the + button
-		Button subscribe = (Button) findViewById(R.id.button_add_strength);
+		Button log = (Button) findViewById(R.id.button_add_strength);
 		
-		subscribe.setOnClickListener(new View.OnClickListener() {
+		log.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	Intent intent = new Intent(v.getContext(), ChooseActivityType.class);
+            	Intent intent = new Intent(v.getContext(), NewStrengthActivity.class);
                 startActivity(intent);
             }
         });
 		
 		// Setup ArrayAdapter and ListView
-		String testActivities[] = {"Yoga"," Running"," Swimming", "Tennis"};
+		String testActivities[] = {"Strength Log 1","Strength Log 2","Stregth Log 3", "Stregth Log 4"};
         listv = (ListView) findViewById(R.id.list1);
         adapter = new ArrayAdapter<String>(this, R.layout.activity_main_list_item, R.id.activity_title, testActivities);
         listv.setAdapter(adapter);
@@ -45,7 +45,7 @@ public class FitnessTracking extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.fitness_tracking, menu);
+		getMenuInflater().inflate(R.menu.strength_activities, menu);
 		return true;
 	}
 
@@ -60,4 +60,7 @@ public class FitnessTracking extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+
+
 }

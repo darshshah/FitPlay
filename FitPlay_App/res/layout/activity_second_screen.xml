@@ -24,11 +24,11 @@
             android:textSize="65px" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/button_add_strength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/button2"
-            android:layout_alignRight="@+id/button2"
+            android:layout_alignLeft="@+id/button_new_strength"
+            android:layout_alignRight="@+id/button_new_strength"
             android:layout_below="@+id/textView1"
             android:layout_marginTop="30dp"
             android:gravity="center"
@@ -36,10 +36,10 @@
             android:text="Fitness Tracking" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_new_strength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button1"
+            android:layout_below="@+id/button_add_strength"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:gravity="center"

@@ -34,7 +34,7 @@
 
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editText_add_cardio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10" >
@@ -58,13 +58,13 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/button_add_strength"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView3"
                 android:layout_alignBottom="@+id/textView3"
-                android:layout_toLeftOf="@+id/button2"
+                android:layout_toLeftOf="@+id/button_new_strength"
                 android:paddingLeft="5px"
                 android:paddingRight="5px"
                 android:text=" Add "
@@ -76,7 +76,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_add_strength"
                 android:layout_marginTop="41dp"
                 android:orientation="vertical" >
 
@@ -89,12 +89,12 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_new_strength"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/button1"
-                android:layout_alignBottom="@+id/button1"
+                android:layout_alignBaseline="@+id/button_add_strength"
+                android:layout_alignBottom="@+id/button_add_strength"
                 android:layout_alignParentRight="true"
                 android:text="Done" />
 

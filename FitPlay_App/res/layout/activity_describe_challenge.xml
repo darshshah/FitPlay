@@ -32,7 +32,7 @@
             android:text="To do exercise. This place holds the description which was provided by the user when the challenge was created." />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/button_add_strength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

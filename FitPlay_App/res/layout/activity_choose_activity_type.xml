@@ -4,22 +4,22 @@
     android:layout_height="match_parent" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button_add_cardio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="164dp"
-        android:minWidth="200dip"
+        android:layout_above="@+id/button_new_strength"
+        android:layout_alignLeft="@+id/button_new_strength"
+        android:layout_alignRight="@+id/button_new_strength"
+        android:layout_marginBottom="34dp"
         android:text="Cardio Training" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_new_strength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_marginBottom="178dp"
         android:minWidth="200dip"
         android:text="Weight Training" />
 
