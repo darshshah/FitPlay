@@ -24,16 +24,12 @@
             android:textSize="65px" />
 
         <Button
-            android:id="@+id/button_add_strength"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:id="@+id/button_login"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/textView1"
-            android:layout_marginTop="85dp"
-            android:background="@drawable/blue"
-            android:gravity="center"
-            android:padding="25px"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="82dp"
             android:text="Login with Facebook" />
 
     </RelativeLayout>

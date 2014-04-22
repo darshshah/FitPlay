@@ -20,11 +20,11 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Button
-                android:id="@+id/button_add_strength"
-                android:layout_width="0dp"
+                android:id="@+id/button_done_cardio"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Done" />
+
         </TableRow>
 
         <TableRow
@@ -37,13 +37,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Name" />
 
             <EditText
-                android:id="@+id/editText_add_cardio"
+                android:id="@+id/editText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10" />
+
         </TableRow>
 
         <TableRow

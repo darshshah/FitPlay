@@ -24,26 +24,22 @@
             android:textSize="65px" />
 
         <Button
-            android:id="@+id/button_add_strength"
+            android:id="@+id/button_fit_tracking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/button_new_strength"
-            android:layout_alignRight="@+id/button_new_strength"
             android:layout_below="@+id/textView1"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:padding="25px"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
             android:text="Fitness Tracking" />
 
         <Button
-            android:id="@+id/button_new_strength"
+            android:id="@+id/button_groups"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button_add_strength"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:padding="25px"
+            android:layout_alignLeft="@+id/button_fit_tracking"
+            android:layout_alignRight="@+id/button_fit_tracking"
+            android:layout_below="@+id/button_fit_tracking"
+            android:layout_marginTop="24dp"
             android:text="Groups and Challenges" />
     
     </RelativeLayout>
