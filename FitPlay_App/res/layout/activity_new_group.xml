@@ -32,75 +32,59 @@
             android:paddingTop="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
-        <EditText
-            android:id="@+id/editText_add_cardio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" >
-
-            <requestFocus />
-        </EditText>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.26" >
+            android:layout_weight="0.02" >
+	
+	        <EditText
+	            android:id="@+id/newgroupname"
+	            android:layout_width="250dp"
+	            android:layout_height="wrap_content"
+	            android:layout_alignBottom="@+id/doneaddingmembers"
+	            android:ems="10"
+	            android:hint="Group Name" >
+	
+	            <requestFocus android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="34dp"
-                android:text="Members"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+	        </EditText>
 
-            <Button
-                android:id="@+id/button_add_strength"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView3"
-                android:layout_alignBottom="@+id/textView3"
-                android:layout_toLeftOf="@+id/button_new_strength"
-                android:paddingLeft="5px"
-                android:paddingRight="5px"
-                android:text=" Add "
-                android:width="60dp" />
+	        <Button
+	            android:id="@+id/doneaddingmembers"
+	            style="?android:attr/buttonStyleSmall"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentRight="true"
+	            android:layout_alignParentTop="true"
+	            android:text="Done" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/button_add_strength"
-                android:layout_marginTop="41dp"
-                android:orientation="vertical" >
+	        <TextView
+	            android:id="@+id/textView3"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_below="@+id/newgroupname"
+	            android:layout_marginTop="22dp"
+	            android:text="Select Members"
+	            android:textAppearance="?android:attr/textAppearanceMedium" />
+           
+
 
                 <ListView
-                    android:id="@+id/listView1"
+                    android:id="@+id/listnewgroup"
                     android:layout_width="match_parent"
-                    android:layout_height="288dp" >
+                    android:layout_height="fill_parent"
+     				android:layout_marginTop="100dp">
+                    
+
                 </ListView>
+        
+		</RelativeLayout>
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button_new_strength"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/button_add_strength"
-                android:layout_alignBottom="@+id/button_add_strength"
-                android:layout_alignParentRight="true"
-                android:text="Done" />
 
-        </RelativeLayout>
 
-    </LinearLayout>
-
+       
 </FrameLayout>
 

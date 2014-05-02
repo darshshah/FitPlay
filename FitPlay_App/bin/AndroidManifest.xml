@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fitplay_app"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="13"
         android:targetSdkVersion="19" />
+	<uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,124 +15,104 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.fitplay_app.IntroScreen"
+            android:name="run_fitplay_app.IntroScreen"
             android:label="@string/app_name" >
-                    <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        
         <activity
-            android:name="com.example.fitplay_app.MainActivity"
+            android:name="run_fitplay_app.MainActivity"
             android:label="@string/app_name" >
-         
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.SecondScreen"
-            android:label="@string/title_activity_second_screen"
-            android:parentActivityName="com.example.fitplay_app.IntroScreen" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fitplay_app.IntroScreen" />
+            android:name="run_fitplay_app.SecondScreen"
+            android:label="@string/title_activity_second_screen">
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.ListGroups"
-            android:label="@string/title_activity_list_groups"
-            android:parentActivityName="com.example.fitplay_app.SecondScreen" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fitplay_app.SecondScreen" />
+            android:name="application.presentation.group.ListGroups"
+            android:label="@string/title_activity_list_groups" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.NewGroup"
-            android:label="@string/title_activity_new_group"
-            android:parentActivityName="com.example.fitplay_app.ListGroups" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fitplay_app.ListGroups" />
+            android:name="application.presentation.group.NewGroup"
+            android:label="@string/title_activity_new_group">
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.NewMembers"
-            android:label="@string/title_activity_new_members"
-            android:parentActivityName="com.example.fitplay_app.NewGroup" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fitplay_app.NewGroup" />
+            android:name="application.presentation.users.NewMembers"
+            android:label="@string/title_activity_new_members">
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.CreateChallege"
-            android:label="@string/title_activity_create_challege"
-            android:parentActivityName="com.example.fitplay_app.DescribeGroup" >
-            
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fitplay_app.DescribeGroup" />
+            android:name="application.presentation.challenge.CreateChallege"
+            android:label="@string/title_activity_create_challege" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.DescribeChallenge"
-            android:label="@string/title_activity_describe_challenge"
-            android:parentActivityName="com.example.fitplay_app.DescribeGroup" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fitplay_app.DescribeGroup" />
+            android:name="application.presentation.challenge.DescribeChallenge"
+            android:label="@string/title_activity_describe_challenge" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.FinishChallenge"
-            android:label="@string/title_activity_finish_challenge"
-            android:parentActivityName="com.example.fitplay_app.DescribeChallenge" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fitplay_app.DescribeChallenge" />
+            android:name="application.presentation.challenge.FinishChallenge"
+            android:label="@string/title_activity_finish_challenge" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.DescribeGroup"
+            android:name="application.presentation.group.DescribeGroup"
             android:label="@string/title_activity_describe_group"
-            android:parentActivityName="com.example.fitplay_app.ListGroups" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fitplay_app.ListGroups" />
-        </activity>
+            android:parentActivityName=".ListGroups" >
+        </activity> 
+          
         <activity
-            android:name="com.example.fitplay_app.ShowChallengesTemp"
-            android:label="@string/title_activity_show_challenges_temp" >
-        </activity>
-              <activity
-            android:name="com.example.fitplay_app.FitnessTracking"
+            android:name="application.presentation.log.FitnessTracking"
             android:label="@string/title_activity_fitness_tracking" >
         </activity>
+             
         <activity
-            android:name="com.example.fitplay_app.Test"
-            android:label="@string/title_activity_test" >
-        </activity>
-        <activity
-            android:name="com.example.fitplay_app.ChooseActivityType"
+            android:name="application.presentation.activites.ChooseActivityType"
             android:label="@string/title_activity_choose_activity_type" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.NewCardioActivity"
+            android:name="application.presentation.activites.NewCardioActivity"
             android:label="@string/title_activity_new_cardio" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.NewStrengthActivity"
+            android:name="application.presentation.activites.NewStrengthActivity"
             android:label="@string/title_activity_new_strength" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.LogCardio"
+            android:name="application.presentation.log.LogCardio"
             android:label="@string/title_activity_log_cardio" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.Log_Strength"
-            android:label="@string/title_activity_log__strength" >
+            android:name="application.presentation.log.LogStrength"
+            android:label="@string/title_activity_log_strength" >
         </activity>
-         <activity
-            android:name="com.example.fitplay_app.CardioActivities"
+        
+        <activity 
+            android:name="application.presentation.activites.CardioActivities"
             android:label="@string/title_activity_cardio_activities" >
         </activity>
+        
         <activity
-            android:name="com.example.fitplay_app.StrengthActivities"
+            android:name="application.presentation.activites.StrengthActivities"
             android:label="@string/title_activity_strength_activities" >
+        </activity>
+
+        <activity
+            android:name="application.presentation.group.GroupData"
+            android:label="@string/title_activity_group_data" >
         </activity>
     </application>
 

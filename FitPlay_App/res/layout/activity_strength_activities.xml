@@ -3,7 +3,7 @@
     android:id="@+id/container_strength_activities"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.fitplay_app.StrengthActivities"
+    tools:context="activities.StrengthActivities"
     android:orientation="vertical">
 
     <LinearLayout

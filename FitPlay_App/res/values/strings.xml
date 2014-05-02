@@ -9,8 +9,8 @@
     <string name="title_activity_new_group">NewGroup</string>
     <string name="title_activity_new_members">NewMembers</string>
     <string name="title_activity_describe_group">DescribeGroup</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
+    <string name="title_section1">Challenges</string>
+    <string name="title_section2">Members</string>
     <string name="title_section3">Section 3</string>
     <string name="title_activity_create_challege">CreateChallege</string>
     <string name="title_activity_describe_challenge">DescribeChallenge</string>
@@ -22,8 +22,9 @@
     <string name="title_activity_new_cardio">NewCardioActivity</string>
     <string name="title_activity_new_strength">NewStrengthActivity</string>
     <string name="title_activity_log_cardio">LogCardio</string>
-    <string name="title_activity_log__strength">Log_Strength</string>
+    <string name="title_activity_log_strength">Log_Strength</string>
     <string name="title_activity_cardio_activities">CardioActivities</string>
     <string name="title_activity_strength_activities">StrengthActivities</string>
+    <string name="title_activity_group_data">GroupData</string>
 
 </resources>

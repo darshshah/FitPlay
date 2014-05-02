@@ -13,21 +13,26 @@
         android:paddingTop="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
-        
 
-       <TextView
+        <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Group Challenges"
             android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
+            android:text="Group Challenges"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/buttonaddchallenge"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
        <GridView
            android:id="@+id/gridView1"
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
+           android:layout_height="310dp"
            android:numColumns="2" >
        </GridView>
 
