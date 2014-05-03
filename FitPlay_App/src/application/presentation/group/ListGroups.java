@@ -39,10 +39,10 @@ public class ListGroups extends Activity implements RemoteDBAdapterDelegate {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_groups);
 		
-		RemoteDBAdapter rdb = new RemoteDBAdapter(this);
+		RemoteDBAdapter rdb = new RemoteDBAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com", this);
 		
 		try {
-			rdb.getAllObjectsOfType("Group");
+			rdb.getAllObjectsOfType("Group","group");
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,11 +93,37 @@ public class ListGroups extends Activity implements RemoteDBAdapterDelegate {
 			if (resultCode == Activity.RESULT_OK) {         
 				 
 				 Bundle b = data.getExtras();
-			     String[] resultArr = b.getStringArray("selectedItems");
+			     int[] resultArr = b.getIntArray("selectedItems");
+			     
 			     // send new grp info to database
+			     
 			     Group g = new Group(b.getString("GrpName"));
+			     g.setOwner_id(1);
+			     
+			     RemoteDBAdapter rdb = new RemoteDBAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com", this);
+			     try {
+						rdb.PostObjectsOfTypeWithParams("Group", "group/index.php", g);
+						Thread.sleep(200);
+				     } catch (Exception e) {
+						// TODO Auto-generated catch block
+				    	 e.printStackTrace();
+				     }
+			    
+			    for(int i : resultArr){
+				     String path = "addUsersToGroup/?group=" + g.getGname()+ "&user=" + i ;
+				     try {
+						rdb.PostObjectsOfTypeWithParams("Request", path, null);
+				     } catch (Exception e) {
+						// TODO Auto-generated catch block
+				    	 e.printStackTrace();
+				     }
+			     }
+			     
+			     
 			     grp.add(g);
 			     adapter.notifyDataSetChanged();
+			     			     
+			    
 			     
 				}          
 			    

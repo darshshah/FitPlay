@@ -1,6 +1,11 @@
 package application.presentation.group;
 
 
+import java.util.ArrayList;
+
+import ws.remote.RemoteDBAdapter;
+import ws.remote.contracts.RemoteDBAdapterDelegate;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,12 +22,16 @@ import application.presentation.challenge.DescribeChallenge;
 
 import com.example.fitplay_app.R;
 
-public class FragGroupChallenges extends Fragment {
+import entities.Challenge;
+
+public class FragGroupChallenges extends Fragment implements RemoteDBAdapterDelegate {
 	
+	protected static final int ADD_NEW_CHALLENGE = 998;
 	private GridView gview;
-	private ArrayAdapter<String> adapter;
+	private ArrayAdapter<Challenge> adapter;
 	View rootView;
 	int groupid;
+	ArrayList<Challenge> carray;
 	
 
 	public View onCreateView(LayoutInflater inflator, ViewGroup container, 
@@ -32,31 +41,98 @@ public class FragGroupChallenges extends Fragment {
 		System.out.println("IDIS" + groupid);
 		rootView= inflator.inflate(R.layout.activity_describe_group, container, false);
 		
-
+		// challenges will be populated with the groupid
 		String testActivities[] = {"10 miles run"," 100 pushups","20 miles walk", "10k swimming"};
-	    gview = (GridView) rootView.findViewById(R.id.gridViewcha);
-        gview.setBackgroundColor(0);
-        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.activity_main_list_item, R.id.activity_title, testActivities);
+	    
+		// get challenges from server for a given group id
+		// armando
+		
+	    RemoteDBAdapter rdb = new RemoteDBAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com", this);
+	    
+		try {
+	    	rdb.fetchRequestWithTypeAndPath("Challenge", "challengesOfGroup/index.php?id=" + Integer.toString(groupid));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	
+		Button button_g = (Button) rootView.findViewById(R.id.buttonaddchallenge);
+		button_g.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent intent = new Intent(v.getContext(), CreateChallege.class);
+                startActivityForResult(intent, ADD_NEW_CHALLENGE);
+            }
+        });
+		
+		return rootView;
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {   // See which sub activity has finished   
+
+	if (resultCode != Activity.RESULT_CANCELED) {
+		switch (requestCode) {     
+		
+		case ADD_NEW_CHALLENGE:  
+		// add new data to the database for that grp
+			if (resultCode == Activity.RESULT_OK)
+			{
+			Bundle b = data.getExtras();
+			b.getInt("sday");
+			b.getInt("smonth");
+			b.getInt("syear");
+			b.getInt("eday");
+			b.getInt("emonth");
+			b.getInt("eyear");
+			
+			b.getString("newCname");
+			b.getString("newCinfo");
+			
+			Challenge c = new Challenge(123, 123, b.getString("newCname"), b.getString("newCinfo"));
+			//
+			// make a post request to the database
+			// armando
+			
+			carray.add(c);
+		    adapter.notifyDataSetChanged();
+			
+			}
+			
+		default:
+		
+			}	
+		}
+	
+	}
+
+	@Override
+	public void didReceiveResponseObjects(ArrayList<?> obj, int id) {
+		// TODO Auto-generated method stub
+		carray = (ArrayList<Challenge>) obj;
+		
+		System.out.println("jh");
+		if (carray != null)
+		{
+		gview = (GridView) rootView.findViewById(R.id.gridViewcha);
+       
+        adapter = new ArrayAdapter<Challenge>(getActivity().getApplicationContext(), R.layout.activity_main_list_item,R.id.activity_title, carray);
         gview.setAdapter(adapter);
+        
         gview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int pos, long id){
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(v.getContext(), DescribeChallenge.class);
+				Bundle b = new Bundle();
+				b.putInt("ChallengeNum", pos);
+				intent.putExtras(b);
 	            startActivity(intent);
 			}
         	
 		});
-        
-		Button button_g = (Button) rootView.findViewById(R.id.buttonaddchallenge);
-		button_g.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	Intent intent = new Intent(v.getContext(), CreateChallege.class);
-                startActivity(intent);
-            }
-        });
-		
-		return rootView;
+		}
 	}
 }

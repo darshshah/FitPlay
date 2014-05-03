@@ -9,8 +9,9 @@
     tools:context="com.example.fitplay_app.LogStrength$PlaceholderFragment" >
 
     <TextView
+        android:id="@+id/section_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+         />
 
 </RelativeLayout>

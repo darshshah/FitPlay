@@ -22,11 +22,7 @@ public class DescribeChallenge extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_describe_challenge);
 
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
-		
+	
 		
 		b = (Button) findViewById(R.id.challengeCompleted);
 		b.setOnClickListener(new OnClickListener() {
@@ -60,21 +56,6 @@ public class DescribeChallenge extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(
-					R.layout.fragment_describe_challenge, container, false);
-			return rootView;
-		}
-	}
+	
 
 }

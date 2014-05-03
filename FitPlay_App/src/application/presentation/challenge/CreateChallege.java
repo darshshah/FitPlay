@@ -1,28 +1,53 @@
 //Test
 package application.presentation.challenge;
 
-import com.example.fitplay_app.R;
-
 import android.app.Activity;
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+
+import com.example.fitplay_app.R;
 
 public class CreateChallege extends Activity {
 
+	Button b;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_challege);
-
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		
+		b = (Button) findViewById(R.id.button_add_challenge);
+		b.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			Intent intent = new Intent();
+			Bundle b = new Bundle();
+			DatePicker start = (DatePicker)findViewById(R.id.startdate);
+			DatePicker end = (DatePicker)findViewById(R.id.enddate);
+			b.putInt("sday", start.getDayOfMonth());
+			b.putInt("smonth", start.getMonth());
+			b.putInt("syear", start.getYear());
+			b.putInt("eday", end.getDayOfMonth());
+			b.putInt("emonth", end.getMonth());
+			b.putInt("eyear", end.getYear());
+			EditText name = (EditText)findViewById(R.id.newchallengename);
+			EditText info = (EditText)findViewById(R.id.newchallengeinfo);
+			b.putString("newCname", name.getText().toString());
+			b.putString("newCinfo", info.getText().toString());
+			intent.putExtras(b);
+			setResult(Activity.RESULT_OK, intent);
+	        finish();
+			
+			}
+		});
 	}
 
 	@Override
@@ -45,21 +70,7 @@ public class CreateChallege extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
 
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_create_challege,
-					container, false);
-			return rootView;
-		}
-	}
+	
 
 }

@@ -3,6 +3,7 @@ package ws.remote;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -19,48 +20,69 @@ import entities.Cardio_Exercise;
 import entities.Challenge;
 import entities.Group;
 import entities.Log;
+import entities.NVPair;
 import entities.Strength_Exercise;
 import entities.User;
 
 
-
+/**
+ * This class is used to provide the application access to remote objects, specifically, retrieved from a 
+ * web server
+ *
+ */
 @SuppressLint("UseSparseArrays")
 public class RemoteDBAdapter implements FetchFromStoreInterface, PostToStoreInterface, HttpAdapterDelegate {
 	private int id;
 	private HashMap<Integer,String> typeMap;
 	private RemoteDBAdapterDelegate caller;
+	private String baseIP;
 	/**
 	 * Constructor, which sets the delegate, to call when the requests are successfully parsed
 	 * @param caller
 	 */
-	public RemoteDBAdapter(RemoteDBAdapterDelegate caller){
+	public RemoteDBAdapter(String baseIP, RemoteDBAdapterDelegate caller){
 		id = 0;
 		typeMap = new HashMap<Integer,String>();
 		this.caller = caller;
+		this.baseIP = baseIP;
 	}
 	
 	/**
 	 * Retrieve all the objects of the specified type
 	 */
 	@Override
-	public int getAllObjectsOfType(String type)  throws ClientProtocolException, IOException {
-		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-		HttpAdapter adapter = new HttpAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com/group/", params, "GET", this, id);
+	public int getAllObjectsOfType(String type, String resourcePath)  throws ClientProtocolException, IOException {
+		ArrayList<NVPair> params = new ArrayList<NVPair>();
+		StringBuilder url = new StringBuilder(baseIP);
+		url.append("/");url.append(resourcePath);
+		HttpAdapter adapter = new HttpAdapter(url.toString(), params, "GET", this, id);
 		adapter.execute();
 		typeMap.put(id, type);
 		return id++;
 	}
 	/**
-	 * Retrieve an object with a specific type and id
+	 * Different types of requests
 	 */
 	@Override
-	public int getObjectWithTypeAndId(String type, int id) {
+	public int getObjectWithTypeAndId(String type, int id, String resourcePath) {
 		// TODO Auto-generated method stub
 		return id++;
 	}
-	
+
+	@Override
+	public int fetchRequestWithTypeAndPath(String type, String resourcePath) {
+		ArrayList<NVPair> params = new ArrayList<NVPair>();
+		StringBuilder url = new StringBuilder(baseIP);
+		url.append("/");url.append(resourcePath);
+		HttpAdapter adapter = new HttpAdapter(url.toString(), params, "GET", this, id);
+		adapter.execute();
+		typeMap.put(id, type);
+		return id++;
+
+	}
 	/**
-	 * When the JSON response is retrieved, create objects according to the type, 
+	 * Callback methods:
+	 * When the JSON response is retrieved, create objects according to the type, and request type
 	 * and pass them to the delegate
 	 */
 	@Override
@@ -85,6 +107,8 @@ public class RemoteDBAdapter implements FetchFromStoreInterface, PostToStoreInte
 		}
 		else if(type.equals("Group")){
 			ArrayList<Group> result= new ArrayList<Group>();
+			if(json != null)
+			{
 			for(int i = 0; i < json.length(); i++){
 				try {
 					JSONObject obj;
@@ -97,10 +121,13 @@ public class RemoteDBAdapter implements FetchFromStoreInterface, PostToStoreInte
 					e.printStackTrace();
 				}
 			}
+			}
 			caller.didReceiveResponseObjects(result, id);
 		}
 		else if(type.equals("Challenge")){
 			ArrayList<Challenge> result= new ArrayList<Challenge>();
+			if(json != null)
+			{
 			for(int i = 0; i < json.length(); i++){
 				try {
 					JSONObject obj;
@@ -115,10 +142,13 @@ public class RemoteDBAdapter implements FetchFromStoreInterface, PostToStoreInte
 					e.printStackTrace();
 				}
 			}
+			}
 			caller.didReceiveResponseObjects(result, id);
 		}
 		else if(type.equals("User")){
 			ArrayList<User> result= new ArrayList<User>();
+			if(json != null)
+			{
 			for(int i = 0; i < json.length(); i++){
 				try {
 					JSONObject obj;
@@ -131,6 +161,7 @@ public class RemoteDBAdapter implements FetchFromStoreInterface, PostToStoreInte
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
+			}
 			}
 			caller.didReceiveResponseObjects(result, id);
 		}
@@ -175,11 +206,24 @@ public class RemoteDBAdapter implements FetchFromStoreInterface, PostToStoreInte
 	}
 
 	@Override
-	public int PostObjectsOfTypeWithParams(String type, Object obj)
+	public int PostObjectsOfTypeWithParams(String type, String resourcePath, Object obj)
 			throws ClientProtocolException, IOException {
 		
-		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-		HttpAdapter adapter = new HttpAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com/log/", params, "POST", this, id);
+		List<NVPair> params = new ArrayList<NVPair>();
+		StringBuilder url = new StringBuilder(baseIP);url.append("/");
+		url.append(resourcePath);
+		if(type.equals("Group")){
+			Group group = (Group) obj;
+			//params.add(new NVPair("id", String.valueOf(group.getGid())));
+			params.add(new NVPair("name", group.getGname()));
+			params.add(new NVPair("owner_id", String.valueOf(group.getOwner_id())));
+			
+		}
+		if(type.equals("Request")){
+			
+		}
+		
+		HttpAdapter adapter = new HttpAdapter(url.toString(), params, "POST", this, id);
 		adapter.execute();
 		typeMap.put(id, type);
 		
@@ -192,5 +236,6 @@ public class RemoteDBAdapter implements FetchFromStoreInterface, PostToStoreInte
 		// TODO Auto-generated method stub
 		return id;
 	}
+
 
 }

@@ -34,9 +34,9 @@ public class IntroScreen extends Activity implements RemoteDBAdapterDelegate {
             }
         });
 		
-		RemoteDBAdapter adapter = new RemoteDBAdapter(this);
+		RemoteDBAdapter adapter = new RemoteDBAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com", this);
 		try {
-			adapter.getAllObjectsOfType("Log");
+			adapter.getAllObjectsOfType("Log","log/index.php");
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

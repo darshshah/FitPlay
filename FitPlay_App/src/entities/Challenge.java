@@ -46,6 +46,11 @@ public class Challenge {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String toString(){
+		return cname;
+	}
+	
+	
 
 	/*public Calendar getStartDate() {
 		return startDate;

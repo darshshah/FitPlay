@@ -8,7 +8,7 @@
          android:orientation="vertical" >
       
   <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textViewshowgrpmembers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -27,7 +27,7 @@
         <ListView
             android:id="@+id/list2"
             android:layout_width="match_parent"
-            android:layout_height="248dp" >
+            android:layout_height="fill_parent" >
         </ListView>
 
 </LinearLayout>
