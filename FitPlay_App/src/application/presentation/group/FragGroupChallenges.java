@@ -47,6 +47,7 @@ public class FragGroupChallenges extends Fragment implements RemoteDBAdapterDele
 		// get challenges from server for a given group id
 		// armando
 		
+		
 	    RemoteDBAdapter rdb = new RemoteDBAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com", this);
 	    
 		try {
@@ -90,14 +91,27 @@ public class FragGroupChallenges extends Fragment implements RemoteDBAdapterDele
 			b.getString("newCname");
 			b.getString("newCinfo");
 			
-			Challenge c = new Challenge(123, 123, b.getString("newCname"), b.getString("newCinfo"));
+			// dummy code since we dont know the challenge id as this is a new challenge
+			Challenge c = new Challenge(b.getString("newCname"), b.getString("newCinfo"), groupid);
+			
 			//
-			// make a post request to the database
+			// make a post request to the database to add new challenge
 			// armando
 			
-			carray.add(c);
-		    adapter.notifyDataSetChanged();
+			// POST THE CHALLENGE
 			
+			//carray.add(c);
+		    //adapter.notifyDataSetChanged();
+			 RemoteDBAdapter rdb = new RemoteDBAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com", this);
+			    
+				try {
+					rdb.PostObjectsOfTypeWithParams("Challenge", "challenge/index.php", c);
+					Thread.sleep(200);
+			    	rdb.fetchRequestWithTypeAndPath("Challenge", "challengesOfGroup/index.php?id=" + Integer.toString(groupid));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 		default:
@@ -127,7 +141,9 @@ public class FragGroupChallenges extends Fragment implements RemoteDBAdapterDele
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(v.getContext(), DescribeChallenge.class);
 				Bundle b = new Bundle();
-				b.putInt("ChallengeNum", pos);
+				b.putInt("ChallengeId", carray.get(pos).getId());
+				b.putString("ChallengeName", carray.get(pos).getName());
+				b.putString("ChallengeInfo", carray.get(pos).getDescription());
 				intent.putExtras(b);
 	            startActivity(intent);
 			}

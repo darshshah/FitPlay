@@ -12,24 +12,23 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textViewDescribeChallengeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10 Pushups in 5 mins"
+            
             android:layout_gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:layout_margin="20dp"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewDescribeChallengeInfo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="To do exercise. This place holds the description which was provided by the user when the challenge was created." />
+            android:layout_margin="20dp"
+            android:textSize="20sp"
+            />
 
         <Button
             android:id="@+id/challengeCompleted"
@@ -49,7 +48,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ListView
-            android:id="@+id/listView1"
+            android:id="@+id/listusersdone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
              >

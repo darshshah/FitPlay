@@ -98,6 +98,14 @@ public class NewGroup extends Activity implements RemoteDBAdapterDelegate {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				// Go back to the parent screen
+				
+				if( et.getText().toString().trim().equals(""))
+				 {    
+					et.setError( "group name is required!" );
+					et.setHint("please enter group name");
+				 }
+				else
+				{
 				  SparseBooleanArray checked = listv.getCheckedItemPositions();
 			        ArrayList<Integer> selectedItems = new ArrayList<Integer>();
 			        for (int i = 0; i < checked.size(); i++) {
@@ -123,11 +131,11 @@ public class NewGroup extends Activity implements RemoteDBAdapterDelegate {
 			        intent.putExtras(b);
 			        setResult(Activity.RESULT_OK, intent);
 			        finish();
-			   
+				}
 			}
 		});
+	
 	}
-
 		
 	}
 

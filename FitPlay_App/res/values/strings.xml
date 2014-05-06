@@ -26,5 +26,7 @@
     <string name="title_activity_cardio_activities">CardioActivities</string>
     <string name="title_activity_strength_activities">StrengthActivities</string>
     <string name="title_activity_group_data">GroupData</string>
+    <string name="title_activity_register">Register</string>
+    <string name="title_activity_show_user_info">ShowUserInfo</string>
 
 </resources>

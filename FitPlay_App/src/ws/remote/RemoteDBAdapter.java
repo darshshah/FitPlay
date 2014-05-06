@@ -219,6 +219,18 @@ public class RemoteDBAdapter implements FetchFromStoreInterface, PostToStoreInte
 			params.add(new NVPair("owner_id", String.valueOf(group.getOwner_id())));
 			
 		}
+		if(type.equals("Challenge")){
+			Challenge challenge = (Challenge) obj;
+			params.add(new NVPair("name", challenge.getName()));
+			params.add(new NVPair("description", challenge.getDescription()));
+			params.add(new NVPair("group_id", String.valueOf(challenge.getGroup_id())));
+		}
+		if(type.equals("User")){
+			User user = (User) obj;
+			params.add(new NVPair("name", user.getName()));
+			params.add(new NVPair("username", user.getUsername()));
+			params.add(new NVPair("password", user.getPassword()));
+		}
 		if(type.equals("Request")){
 			
 		}

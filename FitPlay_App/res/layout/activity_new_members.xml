@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" 
-        android:paddingTop="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
         
@@ -19,24 +18,24 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Facebook Friends:"
+            android:text="Add Friends:"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+           <Button
+            android:id="@+id/addfriendstoexistinggrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Add"
+            android:layout_gravity="center" />
+           
         <ListView
             android:id="@+id/listViewfriends"
             android:layout_width="match_parent"
-            android:layout_height="300dp" 
-            android:layout_marginBottom="20dp">
-        </ListView>
-
-          <Button
-            android:id="@+id/button_fb_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Friend"
-            android:layout_gravity="center" />
+            android:layout_height="match_parent">
+                    </ListView>
 
     </LinearLayout>
 

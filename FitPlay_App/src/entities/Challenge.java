@@ -22,6 +22,13 @@ public class Challenge {
 		//this.endDate = endDate;
 	}
 	
+	public Challenge(String string, String string2, int group_id) {
+		// TODO Auto-generated constructor stub
+		this.cname = string;
+		this.description = string2;
+		this.group_id = group_id;
+	}
+
 	public int getId() {
 		return cid;
 	}

@@ -14,24 +14,22 @@
      android:paddingLeft="10dp" >
 
      <TextView
-         android:id="@+id/textView1"
+         android:id="@+id/textViewFinishChallengeName"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_gravity="center"
          android:paddingBottom="10dp"
          android:paddingTop="10dp"
          android:singleLine="true"
-         android:text="10 Pushups in 5 mins"
          android:textAppearance="?android:attr/textAppearanceLarge" />
 
      <TextView
-         android:id="@+id/textView2"
+         android:id="@+id/textViewFinishChallengeInfo"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
          android:layout_gravity="center"
          android:paddingBottom="10dp"
-         android:paddingTop="10dp"
-         android:text="To do exercise. This place holds the description which was provided by the user when the challenge was created." />
+         android:paddingTop="10dp" />
 
      <TextView
          android:id="@+id/textView2"
@@ -53,7 +51,7 @@
          android:textAppearance="?android:attr/textAppearanceMedium" />
 
      <EditText
-         android:id="@+id/editText_add_cardio"
+         android:id="@+id/editTextComments"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:padding="10dp"
@@ -68,13 +66,14 @@
      </EditText>
 
      <Button
-         android:id="@+id/button_add_strength"
+         android:id="@+id/buttondone"
          style="?android:attr/buttonStyleSmall"
          android:layout_width="100dp"
          android:layout_height="wrap_content"
          android:layout_gravity="center"
          android:layout_marginTop="50dp"
          android:gravity="center"
+         
          android:text="Done" />
 
  </LinearLayout>

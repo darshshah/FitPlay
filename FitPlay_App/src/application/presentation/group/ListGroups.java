@@ -7,24 +7,23 @@ import org.apache.http.client.ClientProtocolException;
 
 import ws.remote.RemoteDBAdapter;
 import ws.remote.contracts.RemoteDBAdapterDelegate;
-
-import com.example.fitplay_app.R;
-
-import entities.Group;
 import android.app.Activity;
-import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+
+import com.example.fitplay_app.R;
+
+import entities.Group;
 
 public class ListGroups extends Activity implements RemoteDBAdapterDelegate {
 
@@ -40,16 +39,13 @@ public class ListGroups extends Activity implements RemoteDBAdapterDelegate {
 		setContentView(R.layout.activity_list_groups);
 		
 		RemoteDBAdapter rdb = new RemoteDBAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com", this);
-		
-		try {
-			rdb.getAllObjectsOfType("Group","group");
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+		// Store/Get something in shared preference
+	     SharedPreferences preferences = this.getSharedPreferences("MyPreferences", this.MODE_PRIVATE);  
+	     // Read data from shared preferences 
+	     int user_id = preferences.getInt("uid", 0); 
+
+		rdb.fetchRequestWithTypeAndPath("Group", "groupsOfUser/index.php?id=" + user_id);
+	
 		
 		
 			
@@ -98,7 +94,17 @@ public class ListGroups extends Activity implements RemoteDBAdapterDelegate {
 			     // send new grp info to database
 			     
 			     Group g = new Group(b.getString("GrpName"));
-			     g.setOwner_id(1);
+			     
+			     //Store something in shared preference
+			     SharedPreferences preferences = this.getSharedPreferences("MyPreferences", this.MODE_PRIVATE);  
+			     
+
+
+			     // Read data from shared preferences 
+			     int user_id = preferences.getInt("uid", 0); 
+			     
+			     
+			     g.setOwner_id(user_id);
 			     
 			     RemoteDBAdapter rdb = new RemoteDBAdapter("http://ec2-54-86-107-60.compute-1.amazonaws.com", this);
 			     try {
@@ -109,19 +115,30 @@ public class ListGroups extends Activity implements RemoteDBAdapterDelegate {
 				    	 e.printStackTrace();
 				     }
 			    
-			    for(int i : resultArr){
-				     String path = "addUsersToGroup/?group=" + g.getGname()+ "&user=" + i ;
-				     try {
-						rdb.PostObjectsOfTypeWithParams("Request", path, null);
-				     } catch (Exception e) {
-						// TODO Auto-generated catch block
-				    	 e.printStackTrace();
+			    try {
+				    String path = "addUsersToGroup/?group=" + g.getGname()+ "&user=" + user_id ;
+				    rdb.PostObjectsOfTypeWithParams("Request", path, null);
+				    for(int i : resultArr){
+					     path = "addUsersToGroup/?group=" + g.getGname()+ "&user=" + i ;
+					     
+					     rdb.PostObjectsOfTypeWithParams("Request", path, null);
+					     
 				     }
-			     }
-			     
-			     
-			     grp.add(g);
-			     adapter.notifyDataSetChanged();
+			    } catch (Exception e) {
+					// TODO Auto-generated catch block
+			    	 e.printStackTrace();
+			    }
+			    
+			    try {
+					Thread.sleep(200);
+					rdb.fetchRequestWithTypeAndPath("Group", "groupsOfUser/index.php?id=" + user_id);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    
+			     //grp.add(g);
+			     //adapter.notifyDataSetChanged();
 			     			     
 			    
 			     

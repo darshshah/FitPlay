@@ -1,30 +1,69 @@
 package application.presentation.challenge;
 
-import com.example.fitplay_app.R;
-
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.fitplay_app.R;
 
 public class FinishChallenge extends Activity {
 
+	TextView tv1, tv2;
+	Button b;
+	EditText et;
+	String challangename;
+	String challengeinfo;
+	int challengeid;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_finish_challenge);
 
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		tv1 = (TextView) findViewById(R.id.textViewFinishChallengeName);
+		tv2 = (TextView) findViewById(R.id.textViewFinishChallengeInfo);
+		b = (Button) findViewById(R.id.buttondone);
+		et = (EditText) findViewById(R.id.editTextComments);
+		
+		
+	    Bundle bundle = getIntent().getExtras();
+	    
+	    challangename = bundle.getString("ChallengeName");
+	    challengeinfo = bundle.getString("ChallengeInfo");
+	    challengeid = bundle.getInt("ChallengeId");
+	    		
+		tv1.setText(challangename);
+	    tv2.setText(challengeinfo);
+	    
+	    b.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+		
+				System.out.println("COMMENT" + et.getText().toString());
+				Intent intent = new Intent();
+				Bundle b = new Bundle();
+				
+				b.putString("COMMENT", et.getText().toString());
+				
+				intent.putExtras(b);
+				setResult(Activity.RESULT_OK, intent);
+		        finish();
+				
+			}
+		});
+	    
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,21 +85,5 @@ public class FinishChallenge extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(
-					R.layout.fragment_finish_challenge, container, false);
-			return rootView;
-		}
-	}
 
 }

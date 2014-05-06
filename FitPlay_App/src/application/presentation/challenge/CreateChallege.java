@@ -17,35 +17,44 @@ import com.example.fitplay_app.R;
 public class CreateChallege extends Activity {
 
 	Button b;
+	EditText name, info;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_challege);
 		
 		b = (Button) findViewById(R.id.button_add_challenge);
+		name = (EditText)findViewById(R.id.newchallengename);
+		info = (EditText)findViewById(R.id.newchallengeinfo);
 		b.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-			Intent intent = new Intent();
-			Bundle b = new Bundle();
-			DatePicker start = (DatePicker)findViewById(R.id.startdate);
-			DatePicker end = (DatePicker)findViewById(R.id.enddate);
-			b.putInt("sday", start.getDayOfMonth());
-			b.putInt("smonth", start.getMonth());
-			b.putInt("syear", start.getYear());
-			b.putInt("eday", end.getDayOfMonth());
-			b.putInt("emonth", end.getMonth());
-			b.putInt("eyear", end.getYear());
-			EditText name = (EditText)findViewById(R.id.newchallengename);
-			EditText info = (EditText)findViewById(R.id.newchallengeinfo);
-			b.putString("newCname", name.getText().toString());
-			b.putString("newCinfo", info.getText().toString());
-			intent.putExtras(b);
-			setResult(Activity.RESULT_OK, intent);
-	        finish();
-			
+				if( name.getText().toString().trim().equals(""))
+				 {    
+					name.setError( "challenge name is required!" );
+					name.setHint("please enter challenge name");
+				 }
+				else
+				{
+					Intent intent = new Intent();
+					Bundle b = new Bundle();
+					DatePicker start = (DatePicker)findViewById(R.id.startdate);
+					DatePicker end = (DatePicker)findViewById(R.id.enddate);
+					b.putInt("sday", start.getDayOfMonth());
+					b.putInt("smonth", start.getMonth());
+					b.putInt("syear", start.getYear());
+					b.putInt("eday", end.getDayOfMonth());
+					b.putInt("emonth", end.getMonth());
+					b.putInt("eyear", end.getYear());
+					
+					b.putString("newCname", name.getText().toString());
+					b.putString("newCinfo", info.getText().toString());
+					intent.putExtras(b);
+					setResult(Activity.RESULT_OK, intent);
+			        finish();
+				}
 			}
 		});
 	}
